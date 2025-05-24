@@ -6,20 +6,53 @@
 }
 
 .drink-card{
-    width: 40%;
+    display: flex;
+    width: 50%;
     height: auto;
-    background-color: antiquewhite;
-
-    & img{
-        width: 10rem;
-        height: auto;
-    }
-    
+    background-color: hsla(0, 0%, 48%, 0.1);
+    border-radius: 5px;
+    margin: 2rem;
 }
 
-    
-
 .drinks-ul li{
-    display: inline;
+    display: flex;
     font-size: 1.2rem;
+}
+
+.card-content{
+    padding: 1rem;
+
+    & img{
+        display: flexbox;
+        width: 30%;
+        height: auto;
+        
+        justify-content: end;
+    }
+
+    & h2{
+        display: flex;
+        text-align: start;
+        font-family: 'Lucida Sans',  Geneva, Verdana, sans-serif;
+        font-size: 1.8rem;
+        justify-content: start;
+        width: 40%;
+    }
+
+    & h4{
+        display: flex;
+        text-align: right;
+        font-family: 'Lucida Sans',  Geneva, Verdana, sans-serif;
+        font-size: 1.3rem;
+        justify-content: start;
+        width: 40%;
+    }
+
+    & p{
+        font-family: 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
+        font-size: 1rem;
+        width: 50%;
+        display: inline-block;
+        margin-left: 1.2rem;
+    }
 }
