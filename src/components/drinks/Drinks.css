@@ -1,7 +1,14 @@
 .subtitle{
     font-size: 4rem;
-    color: hsl(0, 0%, 18%);
-    -webkit-text-stroke: 1px hsla(0, 0%, 36%, 0.4);
+    color: hsl(0, 0%, 93%);
+    -webkit-text-stroke: 1px hsla(0, 0%, 50%, 0.5);
+    margin-left: 5rem;
+}
+
+#container-subtitle{
+    font-size: 2.5rem;
+    color: azure;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
     margin-left: 5rem;
 }
 
@@ -24,7 +31,7 @@
 
     & img{
         display: flexbox;
-        width: 30%;
+        width: 35%;
         height: auto;
         
         justify-content: end;

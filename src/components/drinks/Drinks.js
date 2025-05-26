@@ -34,7 +34,7 @@ function Drinks() {
 
       <div className="container">
         <div className="margaritas">
-          <h2>Margaritas</h2>
+          <h2 id="container-subtitle">Margaritas</h2>
           <ul className="drinks-ul">
             {cocktails?.map((drink) => (
               <li key={drink.idDrink}>

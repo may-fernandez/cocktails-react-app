@@ -3,10 +3,11 @@
 }
 
 .nav-links a{
+    font-family: 'Lucida Sans Regular',  Geneva, Verdana, sans-serif;
     text-decoration: none;
     color: white;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem;
 
     &:hover{
         color: hsl(181, 98%, 56%);
