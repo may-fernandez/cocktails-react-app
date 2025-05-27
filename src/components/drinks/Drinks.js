@@ -8,7 +8,7 @@ function Drinks() {
   const [loading, setLoading] = useState(true);
 
   const url =
-    "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita";
+    "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=vodka";
 
   useEffect(() => {
     const fetchDrinks = async () => {
@@ -30,20 +30,27 @@ function Drinks() {
 
   return (
     <div>
-      <h1 className="subtitle">Classic Drinks</h1>
+      <h1 className="title">Some Drinks</h1>
 
       <div className="container">
         <div className="margaritas">
-          <h2 id="container-subtitle">Margaritas</h2>
+          <h2 id="container-subtitle">Vodka</h2>
           <ul className="drinks-ul">
             {cocktails?.map((drink) => (
               <li key={drink.idDrink}>
                 <div className="drink-card">
-                  <div className="card-content">
+                  <div className="card-titles">
                     <h2>{drink.strDrink}</h2> 
                     <h4>{drink.strCategory}</h4>
-                    <img src={drink.strDrinkThumb} />                
-                    <p>{drink.strInstructions}</p>
+                  </div>  
+                  
+                  <div className="drink-content">
+                    <p id="drink-description">{drink.strInstructions}</p>
+                    <img src={drink.strDrinkThumb} id="drink-image"/>                
+                  </div>
+
+                  <div className="more-btn">
+                    <button className="btn-more">More</button>
                   </div>
                 </div>
               </li>
