@@ -64,7 +64,7 @@
     }
 
     &:active{
-        background-color: hsl(327, 100%, 60%)
+        background-color: hsl(327, 100%, 60%);
     }
 }
 

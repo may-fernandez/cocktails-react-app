@@ -6,7 +6,7 @@
 }
 
 #container-subtitle {
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   color: azure;
   font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
   margin-left: 5rem;
@@ -72,8 +72,22 @@
 .more-btn{
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-    
-    
+    justify-content: flex-end;
+
+    & .btn-more{
+        padding: .5rem 1rem;
+        border-radius: 5px;
+        background-color: hsl(327, 100%, 60%);
+        color: white;
+        border: 1px solid hsl(327, 100%, 50%);
+        cursor: pointer;
+
+        &:hover{
+          background-color: hsl(327, 78%, 40%)
+        }
+
+        &:active{
+          background-color: hsl(327, 100%, 60%);;
+        }
+    }
 }

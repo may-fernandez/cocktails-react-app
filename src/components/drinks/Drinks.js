@@ -37,8 +37,8 @@ function Drinks() {
           <h2 id="container-subtitle">Vodka</h2>
           <ul className="drinks-ul">
             {cocktails?.map((drink) => (
-              <li key={drink.idDrink}>
-                <div className="drink-card">
+              <li key={drink.idDrink} className="drink-card">
+                <div >
                   <div className="card-titles">
                     <h2>{drink.strDrink}</h2> 
                     <h4>{drink.strCategory}</h4>
@@ -49,9 +49,10 @@ function Drinks() {
                     <img src={drink.strDrinkThumb} id="drink-image"/>                
                   </div>
 
-                  <div className="more-btn">
+                  
+                </div>
+                <div className="more-btn">
                     <button className="btn-more">More</button>
-                  </div>
                 </div>
               </li>
             ))}
