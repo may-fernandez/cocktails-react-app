@@ -1,6 +1,4 @@
-import React from 'react';
 import './Header.css';
-import logo_drinks from '../../assets/logo_drinks.svg';
 
 function Header(){
 

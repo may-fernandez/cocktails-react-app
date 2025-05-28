@@ -49,7 +49,7 @@
 .search-btn{
     display: block;
     position: absolute;
-    background-color: hsl(327, 100%, 60%);
+    background-color: hsl(327, 78%, 40%);
     border: 1px solid hsl(327, 100%, 50%);
     border-radius: 10px;
     padding: .5rem;
@@ -60,11 +60,11 @@
     color: hsl(0, 0%, 84%);
 
     &:hover{
-        background-color: hsl(327, 78%, 40%);
+        background-color: hsl(327, 100%, 60%);
     }
 
     &:active{
-        background-color: hsl(327, 100%, 60%);
+        background-color: hsl(327, 78%, 40%);
     }
 }
 

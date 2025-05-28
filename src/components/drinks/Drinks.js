@@ -1,4 +1,3 @@
-import React from "react";
 import "./Drinks.css";
 import { useState, useEffect } from "react";
 
@@ -70,7 +69,7 @@ function Drinks() {
                   
                   <div className="drink-content">
                     <p className="drink-description">{drink.strInstructions}</p>
-                    <img src={drink.strDrinkThumb} className="drink-image" alt="Drink image"/>                
+                    <img src={drink.strDrinkThumb} className="drink-image" alt="Drink"/>                
                   </div>
 
                   
@@ -95,7 +94,7 @@ function Drinks() {
 
                   <div className="drink-content">
                     <p className="drink-description">{drink.strInstructions}</p>
-                    <img src={drink.strDrinkThumb} className="drink-image" alt="Drink image"/>
+                    <img src={drink.strDrinkThumb} className="drink-image" alt="Drink"/>
                   </div>
                 </div>
 
