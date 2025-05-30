@@ -25,7 +25,7 @@ function Categories() {
 
   return (
     <div>
-      <h2 className="title">Categories</h2>
+      <h1 className="categories-title">Categories</h1>
 
       <div className="container-categories">
         <ul className="categories-ul">

@@ -18,8 +18,8 @@ function Drinks() {
         const response = await fetch(urlVodka);
         const data = await response.json();
 
-        setVodkaCocktails(data.drinks.slice(0, 3));
-        console.log(data.drinks.slice(0, 3));
+        setVodkaCocktails(data.drinks.slice(0, 4));
+        console.log(data.drinks.slice(0, 4));
       } catch (error) {
         console.error("Error fetching drinks:", error);
       } finally {
@@ -36,8 +36,8 @@ function Drinks() {
         const response = await fetch(urlGin);
         const data = await response.json();
 
-        setGinCocktails(data.drinks.slice(0, 3));
-        console.log(data.drinks.slice(0, 3));
+        setGinCocktails(data.drinks.slice(0, 4));
+        console.log(data.drinks.slice(0, 4));
 
       }
       catch (error){
@@ -53,7 +53,7 @@ function Drinks() {
 
   return (
     <div>
-      <h1 className="title">Some Drinks</h1>
+      <h1 className="title">Alcoholic Drinks</h1>
 
       <div className="container">
         <div className="drinks">
@@ -68,7 +68,7 @@ function Drinks() {
                   </div>  
                   
                   <div className="drink-content">
-                    <p className="drink-description">{drink.strInstructions}</p>
+                    
                     <img src={drink.strDrinkThumb} className="drink-image" alt="Drink"/>                
                   </div>
 
@@ -93,7 +93,7 @@ function Drinks() {
                   </div>
 
                   <div className="drink-content">
-                    <p className="drink-description">{drink.strInstructions}</p>
+                    
                     <img src={drink.strDrinkThumb} className="drink-image" alt="Drink"/>
                   </div>
                 </div>

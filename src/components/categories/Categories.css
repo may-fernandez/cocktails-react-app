@@ -1,6 +1,14 @@
+.categories-title{
+    font-size: 4rem;
+    color: hsl(0, 0%, 93%);
+    -webkit-text-stroke: 1px hsla(335, 99%, 50%, 0.5);
+    margin-left: 5rem;
+}
+
 .categories-ul{
     background-color: hsla(0, 0%, 0%, 0.15);
     width: 90%;
     height: auto;
     justify-self: center;
+    border-radius: 5px;
 }
