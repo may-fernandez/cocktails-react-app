@@ -2,14 +2,14 @@
   font-size: 4rem;
   color: hsl(0, 0%, 93%);
   -webkit-text-stroke: 1px hsla(335, 99%, 50%, 0.5);
-  margin-left: 5rem;
+  margin-left: 3rem;
 }
 
 .container-subtitle {
   font-size: 2.6rem;
   color: azure;
   font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
-  margin-left: 5rem;
+  margin-left: 3rem;
 }
 
 .drink-card {
@@ -17,7 +17,7 @@
   height: auto;
   background-color: hsla(0, 0%, 48%, 0.1);
   border-radius: 5px;
-  margin: 1rem 1rem;
+  margin: 1rem 2rem 0 0;
   padding: 1rem;
   
   & .drink-content {
@@ -39,7 +39,7 @@
   flex-direction: row;
   justify-content: flex-start;
 
-  & li{
+  & .drink-card{
      display: grid;
      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
      gap: 15px;
@@ -87,3 +87,18 @@
         }
     }
 }
+
+.show-drinks-card{
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr);
+  margin-top: 15px;
+  width: 90%;
+  height: auto;
+  
+  & li{
+    
+  }
+   
+
+}
+
