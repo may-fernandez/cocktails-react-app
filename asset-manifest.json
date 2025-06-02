@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/cocktails-react-app/static/css/main.61397aac.css",
-    "main.js": "/cocktails-react-app/static/js/main.a1c7814b.js",
+    "main.css": "/cocktails-react-app/static/css/main.a87528fc.css",
+    "main.js": "/cocktails-react-app/static/js/main.f3fec60e.js",
     "static/media/banner_2.svg": "/cocktails-react-app/static/media/banner_2.d4873f8955934f4e3c5a9972dd690072.svg",
     "static/media/banner_1.svg": "/cocktails-react-app/static/media/banner_1.5a0bec776ab0852d607fa7b4f773b2a9.svg",
     "index.html": "/cocktails-react-app/index.html",
-    "main.61397aac.css.map": "/cocktails-react-app/static/css/main.61397aac.css.map",
-    "main.a1c7814b.js.map": "/cocktails-react-app/static/js/main.a1c7814b.js.map"
+    "main.a87528fc.css.map": "/cocktails-react-app/static/css/main.a87528fc.css.map",
+    "main.f3fec60e.js.map": "/cocktails-react-app/static/js/main.f3fec60e.js.map"
   },
   "entrypoints": [
-    "static/css/main.61397aac.css",
-    "static/js/main.a1c7814b.js"
+    "static/css/main.a87528fc.css",
+    "static/js/main.f3fec60e.js"
   ]
 }
