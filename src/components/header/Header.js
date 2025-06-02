@@ -14,8 +14,8 @@ function Header(){
                     <li><a src="/">Random drink</a></li>
                 </ul>
 
-                <div>
-                    <input type='text' placeholder='Search...' className='search'/>
+                <div className='search'>
+                    <input type='text' placeholder='Search...' className='search-placeholder'/>
                     <button className='search-btn'>Search</button>
                 </div>
             </div>

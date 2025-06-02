@@ -1,5 +1,5 @@
 import "./Drinks.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ShowDrinks from "../ShowDrinks";
 
 // strCategory, strDrink: Nombre del trago, strGlass: vaso, strIngredient1-15, strInstructions
@@ -9,6 +9,7 @@ function Drinks() {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
   const [idActive, setIdActive] = useState(null);
+  const divRef = useRef(null);
 
   const urlVodka =
     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=vodka";
@@ -51,9 +52,26 @@ function Drinks() {
     fetchGinDrinks();
   }, []);
 
-  const toogleDrink = (id) => {
+  const toogleDrink = (e, id) => {
+    e.stopPropagation(); // Detiene el click para que no se dispare el listener
     setIdActive((prev) => (prev === id ? null : id));
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if(divRef.current && !divRef.current.contains(event.target)){
+        setIdActive(null); // Se cierra el div si haces click fuera
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () =>{
+      document.removeEventListener("mousedown", handleClickOutside)
+    };
+
+  }, []);
+
 
   return (
     <div>
@@ -62,7 +80,7 @@ function Drinks() {
       <div className="container">
         <div className="drinks">
           <h2 className="container-subtitle">Vodka</h2>
-          <ul className="drinks-ul">
+          <ul className="drinks-ul" ref={divRef}>
             {vodkaCocktails?.map((drink) => (
               <li key={drink.idDrink} className="drink-card">
                 <div>
@@ -82,32 +100,35 @@ function Drinks() {
                 <div className="more-btn">
                   <button
                     className="btn-more"
-                    onClick={() => toogleDrink(drink.idDrink)}
+                    onClick={(e) => toogleDrink(e, drink.idDrink)}
                   >
                     {idActive === drink.idDrink ? "Hide" : "More"}
                   </button>
 
                   {idActive === drink.idDrink && (
                     <div className="show-drinks-card">
-                      
-
                       <div className="show-drinks-content">
-                        
-                        <ul className="ingredients-ul">
-                          <li>{drink.strIngredient1}</li>
-                          <li>{drink.strIngredient2}</li>
-                          <li>{drink.strIngredient3}</li>
-                          <li>{drink.strIngredient4}</li>
-                          <li>{drink.strIngredient5}</li>
-                          <li>{drink.strIngredient6}</li>
-                          <li>{drink.strIngredient7}</li>
-                          <li>{drink.strIngredient8}</li>
-                          <li>{drink.strIngredient9}</li>
-                          <li>{drink.strIngredient10}</li>
-                        </ul>
-                      </div>
+                        <div className="ingredients">
+                          <h3>Ingredients:</h3>
+                          <ul>
+                            <li>{drink.strIngredient1}</li>
+                            <li>{drink.strIngredient2}</li>
+                            <li>{drink.strIngredient3}</li>
+                            <li>{drink.strIngredient4}</li>
+                            <li>{drink.strIngredient5}</li>
+                            <li>{drink.strIngredient6}</li>
+                            <li>{drink.strIngredient7}</li>
+                            <li>{drink.strIngredient8}</li>
+                            <li>{drink.strIngredient9}</li>
+                            <li>{drink.strIngredient10}</li>
+                          </ul>
+                        </div>
 
-                      <p>{drink.strInstructions}</p>
+                        <div className="instructions">
+                          <h3>Instructions:</h3>
+                          <p>{drink.strInstructions}</p>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>

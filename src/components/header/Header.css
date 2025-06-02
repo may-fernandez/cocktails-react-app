@@ -1,78 +1,80 @@
-.nav-links li{
-    list-style: none;
+.nav-links li {
+  list-style: none;
+  display: flex;
 }
 
-.nav-links a{
-    font-family: 'Lucida Sans Regular',  Geneva, Verdana, sans-serif;
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
+.nav-links a {
+  font-family: "Lucida Sans Regular", Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
 
-    &:hover{
-        color: hsl(181, 98%, 56%);
-    }
+  &:hover {
+    color: hsl(181, 98%, 56%);
+  }
 }
 
-.header{
-    z-index: 1;
+.header {
+  z-index: 99;
 }
 
-.nav{
-    background-color: black;
-    color: white;
-    display: flex;
-    gap: 10px;
-    padding: 1rem;
-    position: fixed;
-    width: 100%;
+.nav {
+  background-color: black;
+  color: white;
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
-.search{
-    display: block;
-    position: absolute;
+.search {
+  display: flex;
+  align-items: center;
+
+  & .search-placeholder {
     border-radius: 10px;
     border: none;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     width: 200px;
     right: 7rem;
-    margin: 1rem;
     outline: none;
     background-color: rgb(255, 255, 255);
     border: 1px solid black;
-    
-    &:focus{
-        border: 1px solid hsl(327, 100%, 60%);
+    &:focus {
+      border: 1px solid hsl(327, 100%, 60%);
     }
-}
+  }
 
-.search-btn{
-    display: block;
-    position: absolute;
+  & .search-btn {
     background-color: hsl(327, 78%, 40%);
     border: 1px solid hsl(327, 100%, 50%);
     border-radius: 10px;
-    padding: .5rem;
+    padding: 0.5rem;
     font-weight: 600;
-    right: 3rem;
-    margin: 1rem;
     cursor: pointer;
     color: hsl(0, 0%, 84%);
 
-    &:hover{
-        background-color: hsl(327, 100%, 60%);
+    &:hover {
+      background-color: hsl(327, 100%, 60%);
     }
 
-    &:active{
-        background-color: hsl(327, 78%, 40%);
+    &:active {
+      background-color: hsl(327, 78%, 40%);
     }
+  }
 }
 
-.nav-links{
-    display: flex;
-    gap: 90px;
-    justify-content: left;
-    width: 50%;
-    margin: 1rem;
+.nav-links {
+  display: flex;
+  padding: 0;
+  gap: 90px;
+  align-items: center;
+  width: fit-content;
+  margin-right: 1rem;
 }
