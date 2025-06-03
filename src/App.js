@@ -4,7 +4,7 @@ import Header from './components/header/Header.js';
 import Hero from './components/hero/Hero.js';
 import Drinks from './components/drinks/Drinks.js';
 import Categories from './components/categories/Categories.js';
-import NonAlcoholics from './components/non_alcoholics/Non_alcoholics.js';
+import RandomDrink from './components/random/RandomDrink.js';
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <Header/>
       <Hero/>
       <Drinks/>
-      <NonAlcoholics/>
       <Categories/>
+      <RandomDrink/>
     </div>
   );
 }
