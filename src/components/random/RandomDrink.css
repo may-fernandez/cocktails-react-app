@@ -1,0 +1,49 @@
+.rand-drink-container{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    background-color: hsla(0, 0%, 48%, 0.1);
+    width: fit-content;
+    height: auto;
+    margin: 2rem;
+    border-radius: 5px;
+    font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
+    
+    & .rand-instructions{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        
+
+        & h3{
+            font-weight: 600;
+            font-size: 2.5rem;
+            color: white;
+            margin: 1rem 2rem 1rem 3rem;
+        }
+
+        & button{
+            display: flex;
+            flex-direction: column;
+            margin: 3rem 2rem 2rem 3rem;
+            padding: 1rem 1rem;
+            background-color:  hsl(327, 78%, 40%);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 1px solid hsl(327, 100%, 50%);
+            border-radius: 5px;
+            cursor: pointer;         
+            
+            &:hover{
+                background-color: hsl(327, 100%, 60%);
+            }
+
+            &:active{
+                background-color: hsl(327, 78%, 40%);
+            }
+            
+        }
+    }
+}
