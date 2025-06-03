@@ -9,7 +9,7 @@ function Drinks() {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
   const [idActive, setIdActive] = useState(null);
-  const divRef = useRef(null);
+  const modalRef = useRef(null);
 
   const urlVodka =
     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=vodka";
@@ -51,16 +51,20 @@ function Drinks() {
 
     fetchGinDrinks();
   }, []);
-
+  /*
   const toogleDrink = (e, id) => {
     e.stopPropagation(); // Detiene el click para que no se dispare el listener
     setIdActive((prev) => (prev === id ? null : id));
   };
+  */
+
+  const openModal = (item) => setIdActive(item);
+  const closeModal = () => setIdActive(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if(divRef.current && !divRef.current.contains(event.target)){
-        setIdActive(null); // Se cierra el div si haces click fuera
+      if(modalRef.current && !modalRef.current.contains(event.target)){
+        closeModal(); // Se cierra el div si haces click fuera
       }
     }
 
@@ -80,7 +84,7 @@ function Drinks() {
       <div className="container">
         <div className="drinks">
           <h2 className="container-subtitle">Vodka</h2>
-          <ul className="drinks-ul" ref={divRef}>
+          <ul className="drinks-ul">
             {vodkaCocktails?.map((drink) => (
               <li key={drink.idDrink} className="drink-card">
                 <div>
@@ -97,43 +101,55 @@ function Drinks() {
                     />
                   </div>
                 </div>
-                <div className="more-btn">
+                <div className="more-btn" key={drink.idDrink}>
                   <button
                     className="btn-more"
-                    onClick={(e) => toogleDrink(e, drink.idDrink)}
+                    onClick={() => openModal(drink)}
                   >
-                    {idActive === drink.idDrink ? "Hide" : "More"}
+                    More
                   </button>
 
-                  {idActive === drink.idDrink && (
-                    <div className="show-drinks-card">
-                      <div className="show-drinks-content">
+                  
+                </div>
+              </li>
+            ))}
+
+            {idActive && (
+                    <div className="show-drinks-card" ref={modalRef}>
+                      <div className="show-drinks-content"  >
+
+                        <h2>{idActive.strDrink}</h2>
+                        <div className="glass">
+                          <h3>Glass:</h3>
+                          <p>{idActive.strGlass}</p>
+                        </div>
                         <div className="ingredients">
                           <h3>Ingredients:</h3>
                           <ul>
-                            <li>{drink.strIngredient1}</li>
-                            <li>{drink.strIngredient2}</li>
-                            <li>{drink.strIngredient3}</li>
-                            <li>{drink.strIngredient4}</li>
-                            <li>{drink.strIngredient5}</li>
-                            <li>{drink.strIngredient6}</li>
-                            <li>{drink.strIngredient7}</li>
-                            <li>{drink.strIngredient8}</li>
-                            <li>{drink.strIngredient9}</li>
-                            <li>{drink.strIngredient10}</li>
+                            <li>{idActive.strIngredient1}</li>
+                            <li>{idActive.strIngredient2}</li>
+                            <li>{idActive.strIngredient3}</li>
+                            <li>{idActive.strIngredient4}</li>
+                            <li>{idActive.strIngredient5}</li>
+                            <li>{idActive.strIngredient6}</li>
+                            <li>{idActive.strIngredient7}</li>
+                            <li>{idActive.strIngredient8}</li>
+                            <li>{idActive.strIngredient9}</li>
+                            <li>{idActive.strIngredient10}</li>
                           </ul>
                         </div>
 
                         <div className="instructions">
                           <h3>Instructions:</h3>
-                          <p>{drink.strInstructions}</p>
+                          <p>{idActive.strInstructions}</p>
+                        </div>
+
+                        <div className="close-btn">
+                          <button onClick={closeModal} >Close</button>
                         </div>
                       </div>
                     </div>
                   )}
-                </div>
-              </li>
-            ))}
           </ul>
 
           <h2 className="container-subtitle">Gin</h2>
@@ -156,11 +172,48 @@ function Drinks() {
                   </div>
                 </div>
 
-                <div className="more-btn">
-                  <button className="btn-more">More</button>
+                <div className="more-btn" key={drink.idDrink}>
+                  <button onClick={() => openModal(drink)} className="btn-more">More</button>
                 </div>
               </li>
             ))}
+
+            {idActive && (
+              <div className="show-drinks-card" ref={modalRef}>
+                      <div className="show-drinks-content"  >
+
+                        <h2>{idActive.strDrink}</h2>
+                        <div className="glass">
+                          <h3>Glass:</h3>
+                          <p>{idActive.strGlass}</p>
+                        </div>
+                        <div className="ingredients">
+                          <h3>Ingredients:</h3>
+                          <ul>
+                            <li>{idActive.strIngredient1}</li>
+                            <li>{idActive.strIngredient2}</li>
+                            <li>{idActive.strIngredient3}</li>
+                            <li>{idActive.strIngredient4}</li>
+                            <li>{idActive.strIngredient5}</li>
+                            <li>{idActive.strIngredient6}</li>
+                            <li>{idActive.strIngredient7}</li>
+                            <li>{idActive.strIngredient8}</li>
+                            <li>{idActive.strIngredient9}</li>
+                            <li>{idActive.strIngredient10}</li>
+                          </ul>
+                        </div>
+
+                        <div className="instructions">
+                          <h3>Instructions:</h3>
+                          <p>{idActive.strInstructions}</p>
+                        </div>
+
+                        <div className="close-btn">
+                          <button onClick={closeModal} >Close</button>
+                        </div>
+                      </div>
+                    </div>
+            )}
           </ul>
         </div>
       </div>
