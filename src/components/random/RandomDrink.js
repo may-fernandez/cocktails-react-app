@@ -25,6 +25,7 @@ function RandomDrink() {
     }
   };
 
+  // strCategory, strDrink: Nombre del trago, strGlass: vaso, strIngredient1-15, strInstructions
 
   return (
     <div>
@@ -32,10 +33,31 @@ function RandomDrink() {
       <div className="rand-drink-container">
         <div className="rand-instructions">
           <h3>Lookup a random cocktail</h3>
-          <button onClick={fetchRandomDrink}>{randomDrink ? "Get new cocktail" : "Get cocktail"}</button>
+          <button onClick={fetchRandomDrink}>
+            {randomDrink ? "Get new cocktail" : "Get cocktail"}
+          </button>
         </div>
         {randomDrink && visible && (
-            <div></div>
+          <div className="rand-drink-card">
+            <div className="rand-drink-content">
+              <div className="rand-card-titles">
+                <h2>{randomDrink.strDrink}</h2>
+                <h4>{randomDrink.strCategory}</h4>
+              </div>
+
+              <div className="rand-img-container">
+                <img
+                  src={randomDrink.strDrinkThumb}
+                  alt="drink"
+                  className="rand-drink-image"
+                />
+              </div>
+            </div>
+
+            <div className="more-btn">
+              <button className="btn-more">More</button>
+            </div>
+          </div>
         )}
       </div>
     </div>
