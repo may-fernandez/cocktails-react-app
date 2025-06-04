@@ -1,6 +1,5 @@
 .rand-drink-container {
   display: flex;
-  flex-direction: column;
   justify-self: center;
   background-color: hsla(0, 0%, 48%, 0.1);
   width: fit-content;
@@ -10,37 +9,51 @@
   font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
 
   & .rand-instructions {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    & h3 {
-      font-weight: 600;
-      font-size: 2.5rem;
-      color: white;
-      margin: 1rem 2rem 1rem 3rem;
-    }
-
-    & button {
+    & #container-title {
       display: flex;
       flex-direction: column;
-      margin: 3rem 2rem 2rem 3rem;
-      padding: 1rem 1rem;
-      background-color: hsl(327, 78%, 40%);
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: 1px solid hsl(327, 100%, 50%);
-      border-radius: 5px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: hsl(327, 100%, 60%);
+      flex-wrap: wrap;
+      align-items: flex-start;
+      & h2 {
+        font-weight: 600;
+        font-size: 2.7rem;
+        color: white;
+        margin: 1rem 2rem 1rem 3rem;
       }
 
-      &:active {
+      & p {
+        width: 70%;
+        margin: 3rem;
+        font-size: 1.5rem;
+        justify-content: start;
+      }
+    }
+
+    & #btn-get {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      & button {
+        margin: 3rem 2rem 2rem 3rem;
+        padding: 1rem 1rem;
         background-color: hsl(327, 78%, 40%);
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: 1px solid hsl(327, 100%, 50%);
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: hsl(327, 100%, 60%);
+        }
+
+        &:active {
+          background-color: hsl(327, 78%, 40%);
+        }
       }
     }
   }
@@ -51,7 +64,7 @@
   width: 15rem;
   height: auto;
   border-radius: 5px;
-  margin: 1rem 2rem 0 0;
+  margin: 1rem 2rem 1rem 0;
   padding: 1rem;
 
   & .rand-drink-content {
@@ -94,28 +107,129 @@
     }
   }
 
-  & .more-btn{
+  & .more-btn {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     margin-top: 1rem;
 
-    & .btn-more{
-        padding: 0.5rem 2rem;
-        background-color: hsl(327, 78%, 40%);
-        color: white;
-        border:  1px solid hsl(327, 100%, 50%);
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 600;
+    & .btn-more {
+      padding: 0.5rem 2rem;
+      background-color: hsl(327, 78%, 40%);
+      color: white;
+      border: 1px solid hsl(327, 100%, 50%);
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
 
-        &:hover{
-            background-color: hsl(327, 100%, 60%);
-        }
-        &:active{
-            background-color: hsl(327, 78%, 40%);
-        }
+      &:hover {
+        background-color: hsl(327, 100%, 60%);
+      }
+      &:active {
+        background-color: hsl(327, 78%, 40%);
+      }
     }
   }
+
 }
+
+.show-drink-modal {
+    display: flex;
+    position: fixed;
+    width: 70%;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    overflow: auto;
+    box-shadow: 3px 3px hsla(327, 100%, 60%, 0.578),
+      -3px 0 0.4em hsla(181, 98%, 56%, 0.597);
+    z-index: 1000;
+    left: 15%;
+    top: 15%;
+
+    & .show-modal-content {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      margin: 1rem;
+      width: fit-content;
+      height: auto;
+    }
+
+    & h2 {
+      margin: 1rem;
+      font-size: 3rem;
+    }
+
+    & .modal-glass {
+      & h3 {
+        font-size: 1.5rem;
+        color: hsl(327, 100%, 60%);
+      }
+
+      & p {
+        padding-left: 0.5rem;
+      }
+    }
+
+    & .modal-ingredients {
+      & h3 {
+        font-size: 1.5rem;
+        color: hsl(327, 100%, 60%);
+      }
+
+      & ul {
+        width: fit-content;
+        padding-left: 0.5rem;
+      }
+
+      & li {
+        list-style: none;
+        width: fit-content;
+      }
+    }
+
+    & .modal-instructions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+
+      & h3 {
+        font-size: 1.5rem;
+        padding-right: 80%;
+        color: hsl(181, 98%, 56%);
+        margin: 0;
+      }
+
+      & p {
+        width: 80%;
+        padding-left: 0.5rem;
+      }
+    }
+
+    & .modal-close-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+
+      & button {
+        padding: 0.5rem 1rem;
+        background-color: hsl(327, 100%, 50%);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 1rem;
+
+        &:hover {
+          background-color: hsl(327, 100%, 60%);
+        }
+      }
+    }
+  }
