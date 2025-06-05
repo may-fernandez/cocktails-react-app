@@ -4,6 +4,7 @@ import Header from './components/header/Header.js';
 import Hero from './components/hero/Hero.js';
 import Drinks from './components/drinks/Drinks.js';
 import RandomDrink from './components/random/RandomDrink.js';
+import Footer from './components/footer/Footer.js';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Hero/>
       <Drinks/>
       <RandomDrink/>
+      <Footer/>
     </div>
   );
 }

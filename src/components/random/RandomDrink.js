@@ -13,7 +13,7 @@ function RandomDrink() {
     try {
       const response = await fetch(urlRandom);
       if (!response.ok) {
-        throw new Error("Error en la respuesta de la API");
+        throw new Error("Error in API response");
       }
 
       const json = await response.json();
