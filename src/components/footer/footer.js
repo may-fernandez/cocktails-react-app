@@ -30,7 +30,6 @@ function Footer() {
   return (
     <div>
       <div className="footer">
-        <div className="footer-container">
           <div className="logo">
             <img src={logo_drinks} />
           </div>
@@ -40,13 +39,12 @@ function Footer() {
             <ul className="categories-ul">
               {footerCategories?.map((category, index) => (
                 <li key={index} className="categories-li">
-                  <h3>{category.strCategory}</h3>
+                  {category.strCategory}
                 </li>
               ))}
             </ul>
           </div>
         </div>
-      </div>
     </div>
   );
 }
