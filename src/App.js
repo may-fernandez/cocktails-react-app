@@ -4,6 +4,7 @@ import Header from './components/header/Header.js';
 import Hero from './components/hero/Hero.js';
 import Drinks from './components/drinks/Drinks.js';
 import RandomDrink from './components/random/RandomDrink.js';
+import Categories from './components/categories/Categories.js';
 import Footer from './components/footer/Footer.js';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Hero/>
       <Drinks/>
       <RandomDrink/>
+      <Categories/>
       <Footer/>
     </div>
   );

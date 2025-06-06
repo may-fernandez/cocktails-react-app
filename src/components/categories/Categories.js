@@ -11,10 +11,13 @@ function Categories() {
     const fetchCategories = async () => {
       try {
         const response = await fetch(urlCategories);
+        if(!response.ok){
+          throw new Error('Error in API response');
+        }
         const data = await response.json();
 
-        setCategories(data.drinks.slice(0, 4));
-        console.log(data.drinks.slice(0, 4));
+        setCategories(data.drinks);
+        console.log(data.drinks);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -32,7 +35,7 @@ function Categories() {
             {categories?.map((category, index) => (
                 <li key={index} className="category-li">
                     <div className="category-title">
-                        <h2>{category.strCategory}</h2>
+                        <a href="/">{category.strCategory}</a>
                     </div>
                 </li>
             ))}

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  height: 15rem;
+  height: 5rem;
   padding: 2rem;
   font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
   
@@ -18,37 +18,9 @@
       width: fit-content;
 
       & img {
-        width: 10rem;
+        width: 5rem;
         height: 100%;
         object-fit: contain;
-      }
-    }
-
-    & .footer-categories {
-      overflow-y: hidden;
-
-      & h2 {
-        font-size: 1.2rem;
-        color: hsl(335, 100%, 61%);
-      }
-      & .categories-ul {
-        columns: 2;
-        column-gap: 5rem;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-
-        & li{
-          font-size: 1rem;
-          margin-bottom: 1rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: ease 0.2s;
-
-          &:hover{
-            color: hsl(181, 98%, 56%);
-          }
-        }
       }
     }
   
