@@ -1,5 +1,7 @@
 import "./Categories.css";
 import { useEffect, useState } from "react";
+import { Element } from "react-scroll";
+
 
 function Categories() {
   const urlCategories =
@@ -30,7 +32,7 @@ function Categories() {
     <div>
       <h1 className="categories-title">Categories</h1>
 
-      <div className="container-categories">
+      <Element name="categories" className="container-categories">
         <ul className="categories-ul">
             {categories?.map((category, index) => (
                 <li key={index} className="category-li">
@@ -40,7 +42,7 @@ function Categories() {
                 </li>
             ))}
         </ul>
-      </div>
+      </Element>
     </div>
   );
 }

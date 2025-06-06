@@ -1,4 +1,5 @@
 import './Header.css';
+import { Link, Element } from 'react-scroll';
 
 function Header(){
 
@@ -8,10 +9,10 @@ function Header(){
             <div className='nav'>
                 
                 <ul className='nav-links'>
-                    <li><a src="/">Home</a></li>
-                    <li><a src="/">Drinks</a></li>
-                    <li><a src="/">Categories</a></li>
-                    <li><a src="/">Random drink</a></li>
+                    <li><Link >Home</Link></li>
+                    <li><Link src="/">Drinks</Link></li>
+                    <li><Link to='categories' smooth={true} duration={500}>Categories</Link></li>
+                    <li><Link to='random_drink' smooth={true} duration={500}>Random drink</Link></li>
                 </ul>
 
                 <div className='search'>

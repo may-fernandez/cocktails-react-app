@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef} from "react";
 import "./RandomDrink.css";
+import {Element} from 'react-scroll';
 
 function RandomDrink() {
   const [randomDrink, setRandomDrink] = useState(null);
@@ -49,7 +50,7 @@ function RandomDrink() {
   // strCategory, strDrink: Nombre del trago, strGlass: vaso, strIngredient1-15, strInstructions
 
   return (
-    <div>
+    <Element name="random_drink">
       <h1 className="title">Random Drink</h1>
       <div className="rand-drink-container">
         <div className="rand-instructions">
@@ -124,7 +125,7 @@ function RandomDrink() {
           </div>
         )}
       </div>
-    </div>
+    </Element>
   );
 }
 
