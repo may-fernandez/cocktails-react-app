@@ -23,6 +23,9 @@ function Drinks() {
     const fetchVodkaDrinks = async () => {
       try {
         const response = await fetch(urlVodka);
+        if(!response.ok){
+          throw new Error("Error in API response");
+        }
         const data = await response.json();
 
         setVodkaCocktails(data.drinks.slice(0, 4));
@@ -41,6 +44,10 @@ function Drinks() {
     const fetchGinDrinks = async () => {
       try {
         const response = await fetch(urlGin);
+        if(!response.ok){
+          throw new Error("Error in API response");
+        }
+
         const data = await response.json();
 
         setGinCocktails(data.drinks.slice(0, 4));

@@ -50,7 +50,7 @@ function RandomDrink() {
   // strCategory, strDrink: Nombre del trago, strGlass: vaso, strIngredient1-15, strInstructions
 
   return (
-    <Element name="random_drink">
+    <Element name="random_drink" className="rand-element">
       <h1 className="title">Random Drink</h1>
       <div className="rand-drink-container">
         <div className="rand-instructions">

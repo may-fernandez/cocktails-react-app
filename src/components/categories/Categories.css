@@ -1,31 +1,31 @@
-.categories-title {
-  font-size: 4rem;
-  color: hsl(0, 0%, 93%);
-  -webkit-text-stroke: 1px hsla(335, 99%, 50%, 0.5);
-  margin-left: 4rem;
-}
+.home-categories-element {
+  margin-bottom: 10rem;
+  & .categories-title {
+    font-size: 4rem;
+    color: hsl(0, 0%, 93%);
+    -webkit-text-stroke: 1px hsla(335, 99%, 50%, 0.5);
+    margin-left: 4rem;
+  }
 
-.container-categories {
-  display: flex;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  width: 80%;
-  height: auto;
-  background-color: hsla(0, 0%, 48%, 0.1);
-  padding: 2rem;
-  border-radius: 5px;
-  justify-self: center;
-  justify-content: center;
-  margin-bottom: 3rem;
-  
+  & .container-categories {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 80%;
+    height: auto;
+    background-color: hsla(0, 0%, 48%, 0.1);
+    padding: 2rem;
+    border-radius: 5px;
+    justify-self: center;
+    justify-content: center;
+    margin-bottom: 3rem;
 
-  & .categories-ul {
-    columns: 2;
-    list-style: disc;
-    column-gap: 10rem;
-    
+    & .categories-ul {
+      columns: 2;
+      list-style: disc;
+      column-gap: 10rem;
 
-    & li {
+      & li {
         font-size: 1.2rem;
         margin-bottom: 1rem;
         font-weight: 600;
@@ -33,20 +33,20 @@
         transition: ease 0.3s;
         width: fit-content;
 
-        & a{
-            color: white;
-            text-decoration: none;
-            transition: ease 0.3s;
+        & a {
+          color: white;
+          text-decoration: none;
+          transition: ease 0.3s;
 
-            &:hover{
-                color: hsl(181, 98%, 56%);
-            }
+          &:hover {
+            color: hsl(181, 98%, 56%);
+          }
         }
 
-        &:hover{
-            color: hsl(335, 100%, 61%);
+        &:hover {
+          color: hsl(335, 100%, 61%);
         }
+      }
     }
   }
 }
-

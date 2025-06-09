@@ -3,6 +3,7 @@
   color: hsl(0, 0%, 93%);
   -webkit-text-stroke: 1px hsla(335, 99%, 50%, 0.5);
   margin-left: 3rem;
+  margin-top: 5rem;
 }
 
 .container-subtitle {

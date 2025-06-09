@@ -2,7 +2,6 @@ import "./Categories.css";
 import { useEffect, useState } from "react";
 import { Element } from "react-scroll";
 
-
 function Categories() {
   const urlCategories =
     "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
@@ -13,8 +12,8 @@ function Categories() {
     const fetchCategories = async () => {
       try {
         const response = await fetch(urlCategories);
-        if(!response.ok){
-          throw new Error('Error in API response');
+        if (!response.ok) {
+          throw new Error("Error in API response");
         }
         const data = await response.json();
 
@@ -29,21 +28,20 @@ function Categories() {
   }, []);
 
   return (
-    <div>
+    <Element name="categories" className="home-categories-element">
       <h1 className="categories-title">Categories</h1>
-
-      <Element name="categories" className="container-categories">
+      <div className="container-categories">
         <ul className="categories-ul">
-            {categories?.map((category, index) => (
-                <li key={index} className="category-li">
-                    <div className="category-title">
-                        <a href="/">{category.strCategory}</a>
-                    </div>
-                </li>
-            ))}
+          {categories?.map((category, index) => (
+            <li key={index} className="category-li">
+              <div className="category-title">
+                <a href="/">{category.strCategory}</a>
+              </div>
+            </li>
+          ))}
         </ul>
-      </Element>
-    </div>
+      </div>
+    </Element>
   );
 }
 
