@@ -5,7 +5,7 @@ function CocktailCategory() {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
   const [drinks, setDrinks] = useState({});
-  const [Loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const urlCategories =
     "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=List";
@@ -64,7 +64,49 @@ function CocktailCategory() {
     }
   };
 
-  return <div></div>;
+  return (
+    <div>
+      {/* Category filter */}
+      <aside className="aside-categories">
+        <h3>Categories</h3>
+        <ul>
+          {categories.map((category) => (
+            <li key={category}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selected.includes(category)}
+                  onChange={() => toggleCategory(category)}
+                />
+                {`${category}`}
+              </label>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      {/* Drinks results */}
+      <main>
+        <h2>Drinks</h2>
+        {loading && <p>Loading...</p>}
+        {!loading && selected.length === 0 && (
+          <p>Please select one or more categories to see drinks</p>
+        )}
+        {!loading &&
+          Object.entries(drinks).map(([cat, drinksList]) => (
+            <div key={cat}>
+              <h3>{cat}</h3>
+              <div>
+                {drinksList.map((drink) => (
+                  <div key={drink.idDrink}>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+      </main>
+    </div>
+  );
 }
 
 export default CocktailCategory;
