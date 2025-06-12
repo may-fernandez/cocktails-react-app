@@ -175,7 +175,7 @@ function CocktailCategory() {
               </div>
 
               <div className="close-btn">
-                <button onClick={closeModal}>Close</button>
+                <button onClick={closeModal}>Close</button> 
               </div>
             </div>
           </div>
