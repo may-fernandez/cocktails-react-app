@@ -6,7 +6,7 @@ function Header(){
 
     const location = useLocation();
     const isHomePage = location.pathname === '/';
-    const isCategoriesPage = Location.pathname === '/categories';
+    const isDrinksPage = Location.pathname === '/drinks';
 
     return(
         <div className='header'>
@@ -22,7 +22,7 @@ function Header(){
                         <ScrollLink to='random_drink' smooth={true} duration={500}>Random drink</ScrollLink>
                         </>
                     ) : null}
-                    <RouterLink to='/categories'>Drinks</RouterLink>
+                    <RouterLink to='/drinks'>Drinks</RouterLink>
                 </div>
 
                 <div className='search'>
