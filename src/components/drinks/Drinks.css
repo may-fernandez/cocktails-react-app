@@ -16,4 +16,8 @@
     & main{
         flex: 1;
     }
+
+    .modal-drink-name{
+        width: 50%;
+    }
 }

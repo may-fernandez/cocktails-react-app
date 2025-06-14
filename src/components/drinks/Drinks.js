@@ -68,7 +68,17 @@ function Drinks() {
     
   };
 
-  const openModal = (item) => setIdActive(item);
+  const openModal = async (drink) => {
+    try{
+      const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
+      const detailedDrink = res.data.drinks[0];
+      setIdActive(detailedDrink || null)
+    }
+    catch(error){
+      console.error("Error fetching drink details:", error);
+      setIdActive(null);
+    }
+  };
   const closeModal = () => setIdActive(null);
 
   useEffect(() => {
@@ -115,13 +125,12 @@ function Drinks() {
         {!loading &&
           Object.entries(drinks).map(([cat, drinksList]) => (
             <div key={cat}>
-              <h3>{cat}</h3>
+              <h2>{cat}</h2>
               <div>
                 {drinksList.map((drink) => (
                   <div key={drink.idDrink}>
                     <div className="card-titles">
                       <h2>{drink.strDrink}</h2>
-                      <h4>{drink.strCategory}</h4>
                     </div>
 
                     <div className="drink-content">
@@ -149,7 +158,7 @@ function Drinks() {
         {idActive && (
           <div className="show-drinks-card" ref={modalRef}>
             <div className="show-drinks-content">
-              <h2>{idActive.strDrink}</h2>
+              <h2 className="modal-drink-name">{idActive.strDrink}</h2>
               <div className="glass">
                 <h3>Glass:</h3>
                 <p>{idActive.strGlass}</p>
