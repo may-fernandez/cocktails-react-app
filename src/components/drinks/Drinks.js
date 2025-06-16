@@ -101,9 +101,10 @@ function Drinks() {
         <h3>Categories</h3>
         <ul>
           {categories.map((category) => (
-            <li key={category}>
-              <label>
+            <li key={category} className="checkbox-wrapper-13">
+              <label for="c1-13" id="checkbox-label">
                 <input
+                  id="c1-13"
                   type="checkbox"
                   checked={selected.includes(category)}
                   onChange={() => toggleCategory(category)}
@@ -126,9 +127,9 @@ function Drinks() {
           Object.entries(drinks).map(([cat, drinksList]) => (
             <div key={cat}>
               <h2>{cat}</h2>
-              <div>
+              <div className="drinks-list">
                 {drinksList.map((drink) => (
-                  <div key={drink.idDrink}>
+                  <div key={drink.idDrink} className="drink-card">
                     <div className="card-titles">
                       <h2>{drink.strDrink}</h2>
                     </div>
