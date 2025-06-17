@@ -15,7 +15,7 @@
 
 .drink-card {
   width: 15rem;
-  height: auto;
+  height: 25rem;
   background-color: hsla(0, 0%, 48%, 0.1);
   border-radius: 5px;
   margin: 1rem 2rem 0 0;
@@ -24,16 +24,20 @@
   & .drink-content {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: end;
 
     & .drink-image {
+      display: flex;
       width: 100%;
       height: auto;
       border-radius: 5px;
+      flex-direction: column;
+      align-items: center;
     }
   }
 
   & .card-titles {
+    height: 5rem;
     & h2 {
       width: fit-content;
       color: hsl(335, 100%, 61%);

@@ -19,17 +19,21 @@
 
 .header {
   z-index: 999;
+  position: fixed;
+  background-color: black;
+  display: flex;
+  width: 100%;
 }
 
 .nav {
-  background-color: black;
+  
   color: white;
   display: flex;
   gap: 10px;
   justify-content: space-around;
   align-items: center;
   padding: 1rem;
-  position: fixed;
+  
   width: 100%;
   flex-wrap: wrap;
 }

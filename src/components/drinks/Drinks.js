@@ -101,8 +101,8 @@ function Drinks() {
         <h3>Categories</h3>
         <ul>
           {categories.map((category) => (
-            <li key={category} className="checkbox-wrapper-13">
-              <label for="c1-13" id="checkbox-label">
+            <li key={category} className="checkbox-wrapper-13" for="c1-13">
+              <label  id="checkbox-label">
                 <input
                   id="c1-13"
                   type="checkbox"
@@ -117,8 +117,8 @@ function Drinks() {
       </aside>
 
       {/* Drinks results */}
-      <main>
-        <h2>Drinks</h2>
+      <main id="drinks-main">
+        <h3>Drinks</h3>
         {loading && <p>Loading...</p>}
         {!loading && selected.length === 0 && (
           <p>Please select one or more categories to see drinks</p>
