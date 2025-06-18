@@ -6,6 +6,7 @@ function Drinks() {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
   const [drinks, setDrinks] = useState({});
+  const [glasses, setGlasses] = useState([]);
   const [idActive, setIdActive] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -28,8 +29,11 @@ function Drinks() {
     .catch((error) => {
       console.error("Error fetching categories:", error);
       setCategories([]);
-    })
+    });
+
   }, []);
+
+  
 
   useEffect(() => {
     if (selected.length === 0) {
@@ -68,6 +72,8 @@ function Drinks() {
     
   };
 
+  
+
   const openModal = async (drink) => {
     try{
       const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
@@ -101,7 +107,7 @@ function Drinks() {
         <h3>Categories</h3>
         <ul>
           {categories.map((category) => (
-            <li key={category} className="checkbox-wrapper-13" for="c1-13">
+            <li key={category} className="checkbox-wrapper-13" htmlFor="c1-13">
               <label  id="checkbox-label">
                 <input
                   id="c1-13"
