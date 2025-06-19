@@ -101,6 +101,7 @@
   position: fixed;
   width: 70%;
   height: auto;
+  max-height: 30rem;
   background-color: rgb(0, 0, 0);
   overflow: auto;
   box-shadow: 3px 3px hsla(327, 100%, 60%, 0.578),
