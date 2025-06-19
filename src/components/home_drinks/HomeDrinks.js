@@ -8,7 +8,6 @@ function Drinks() {
   const [ginCocktails, setGinCocktails] = useState([]);
 
   const [loading, setLoading] = useState(true);
-  const [show, setShow] = useState(false);
   const [idActive, setIdActive] = useState(null);
   const modalRef = useRef(null);
 
