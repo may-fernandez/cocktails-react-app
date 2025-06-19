@@ -1,68 +1,71 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import "./HomeDrinks.css";
 import { React, useState, useEffect, useRef } from "react";
-import axios from "axios";
+import axios from 'axios';
 
-function NonAlcoholic() {
-  const [naDrinks, setNaDrinks] = useState([]);
-  const urlNaDrinks =
-    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
+function Optional() {
+  const [drinks, setDrinks] = useState([]);
+  const urlOptionalAlcohol =
+    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Optional_Alcohol";
 
-  const [show, setShow] = useState(false);
   const [idActive, setIdActive] = useState(null);
   const modalRef = useRef(null);
 
   useEffect(() => {
     const fetchDrinks = async () => {
       try {
-        const response = await fetch(urlNaDrinks);
+        const response = await fetch(urlOptionalAlcohol);
         if (!response.ok) {
-          throw new Error("Error un API response");
+          throw new Error("Error in API response");
         }
-
         const data = await response.json();
-        setNaDrinks(data.drinks.slice(0, 4));
+
+        setDrinks(data.drinks.slice(0, 4));
         console.log(data.drinks.slice(0, 4));
       } catch (error) {
-        console.error("Error fetching non-alcoholic drinks:", error);
+        console.error("Error fetching optional alcohol drinks: ", error);
       }
-    };
-
+    }
+    
     fetchDrinks();
+
   }, []);
 
   const openModal = async (drink) => {
     try{
         const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
         const detailedData = res.data.drinks[0];
-        setIdActive(detailedData || null);
+        setIdActive(detailedData || null); 
     }
     catch(error){
-        console.error("Error opening modal: ", error);
+        console.error("Error opening optional alcohol drinks modal:", error);
         setIdActive(null);
     }
   }
+
   const closeModal = () => setIdActive(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        closeModal();
-      }
-    };
+        if(modalRef.current && !modalRef.current.contains(event.target)){
+            closeModal();
+        }
+    }
 
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
   }, []);
 
-  return (
+  return(
     <div>
-      <h1 className="title">Non-alcoholic Drinks</h1>
+      <h1 className="title">Optional alcohol Drinks</h1>
 
       <div className="drinks">
         <ul className="drinks-ul">
-          {naDrinks?.map((drink) => (
+          {drinks?.map((drink) => (
             <li key={drink.idDrink} className="drink-card">
               <div>
                 <div className="card-titles">
@@ -127,4 +130,4 @@ function NonAlcoholic() {
   );
 }
 
-export default NonAlcoholic;
+export default Optional;
