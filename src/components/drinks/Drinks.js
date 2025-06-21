@@ -6,10 +6,12 @@ function Drinks() {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
   const [drinks, setDrinks] = useState({});
-  const [glasses, setGlasses] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [idActive, setIdActive] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [allDrinks, setAllDrinks] = useState([]);
 
+  const itemsPerPage = 15; 
   const modalRef = useRef(null);
 
   const urlCategories =
@@ -24,6 +26,7 @@ function Drinks() {
       }
       else{
         setCategories([]);
+        setCurrentPage(1);
       }
     })
     .catch((error) => {
@@ -59,6 +62,7 @@ function Drinks() {
 
       setDrinks(results);
       setLoading(false);
+      setAllDrinks(drinks);
     };
 
     fetchDrinks();
@@ -99,6 +103,11 @@ function Drinks() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+  const currentDrinks = categories.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(drinks.length / itemsPerPage);
 
   return (
     <div className="drinks-container">
@@ -197,6 +206,17 @@ function Drinks() {
             </div>
           </div>
         )}
+
+        <div className="pagination">
+          {Array.from({length: totalPages}, (_ , i) => (
+            <button 
+            key={i} 
+            onClick={() => setCurrentPage(i + 1)} 
+            disabled={currentPage === i+1}>
+              {i + 1}
+            </button>
+          ))}
+        </div>
       </main>
     </div>
   );
