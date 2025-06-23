@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Drinks() {
   const [categories, setCategories] = useState([]);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState(null);
   const [drinks, setDrinks] = useState({});
   const [idActive, setIdActive] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -35,28 +35,27 @@ function Drinks() {
   }, []);
 
   useEffect(() => {
-    if (selected.length === 0) {
+    if (!selected) {
       setDrinks({});
       return;
     }
 
     const fetchDrinks = async () => {
       setLoading(true);
-      const results = {};
-
-      for (const category of selected) {
-        const res = await axios.get(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(
-            category
-          )}`
-        );
-
-        results[category] = Array.isArray(res.data.drinks)
-          ? res.data.drinks
-          : [];
+      
+      try{
+        const res = await axios.get
+        (`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(selected)}`);
+        
+        setDrinks({ [selected]: res.data.drinks || [] });
+      }
+      catch(error){
+        console.error("Error fetching drinks:", error);
+        setDrinks({[selected]: []});
       }
 
-      setDrinks(results);
+      
+
       setLoading(false);
     };
 
@@ -64,11 +63,9 @@ function Drinks() {
   }, [selected]);
 
   const toggleCategory = (cat) => {
-    setSelected((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
+    setSelected((prev) => (prev === cat ? null : cat));
 
-    setPageByCat((prev) => ({ ...prev, [cat]: 1 }));
+    setPageByCat({[cat]: 1 });
   };
 
   const openModal = async (drink) => {
@@ -116,7 +113,7 @@ function Drinks() {
                 <input
                   id="c1-13"
                   type="checkbox"
-                  checked={selected.includes(category)}
+                  checked={selected === category}
                   onChange={() => toggleCategory(category)}
                 />
                 {`${category}`}
@@ -130,7 +127,7 @@ function Drinks() {
       <main id="drinks-main">
         <h3>Drinks</h3>
         {loading && <p>Loading...</p>}
-        {!loading && selected.length === 0 && (
+        {!loading && !selected && (
           <p>Please select one or more categories to see drinks</p>
         )}
         {!loading &&
@@ -169,25 +166,26 @@ function Drinks() {
                         </button>
                       </div>
                     </div>
-                ));
+                  ));
                 })()}
               </div>
               <div className="pagination">
-            {Array.from({
-              length: Math.ceil(drinksList.length / itemsPerPage),
-            }).map((_, index) => (
-              <button key={index}
-              onClick={() => changePage(cat, index + 1)}
-              className={pageByCat[cat] === index + 1 ? "active-page" : ""}>
-                {index + 1}
-              </button>
-            ))}
-          </div>
+                {Array.from({
+                  length: Math.ceil(drinksList.length / itemsPerPage),
+                }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => changePage(cat, index + 1)}
+                    className={
+                      pageByCat[cat] === index + 1 ? "active-page" : ""
+                    }
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
             </div>
-            
           ))}
-
-          
 
         {idActive && (
           <div className="show-drinks-card" ref={modalRef}>
