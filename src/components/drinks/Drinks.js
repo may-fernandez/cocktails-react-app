@@ -6,37 +6,33 @@ function Drinks() {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
   const [drinks, setDrinks] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
   const [idActive, setIdActive] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [allDrinks, setAllDrinks] = useState([]);
+  const [pageByCat, setPageByCat] = useState({});
 
-  const itemsPerPage = 15; 
+  const itemsPerPage = 15;
   const modalRef = useRef(null);
 
   const urlCategories =
     "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
 
   useEffect(() => {
-    axios.get(urlCategories).then((res) => {
-      const drinks = res.data.drinks;
+    axios
+      .get(urlCategories)
+      .then((res) => {
+        const drinks = res.data.drinks;
 
-      if (Array.isArray(drinks)) {
-        setCategories(res.data.drinks.map((d) => d.strCategory));
-      }
-      else{
+        if (Array.isArray(drinks)) {
+          setCategories(res.data.drinks.map((d) => d.strCategory));
+        } else {
+          setCategories([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
         setCategories([]);
-        setCurrentPage(1);
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching categories:", error);
-      setCategories([]);
-    });
-
+      });
   }, []);
-
-  
 
   useEffect(() => {
     if (selected.length === 0) {
@@ -62,29 +58,27 @@ function Drinks() {
 
       setDrinks(results);
       setLoading(false);
-      setAllDrinks(drinks);
     };
 
     fetchDrinks();
   }, [selected]);
 
   const toggleCategory = (cat) => {
-   
-      setSelected((prev) =>
-        prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-      );
-    
+    setSelected((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
+
+    setPageByCat((prev) => ({ ...prev, [cat]: 1 }));
   };
 
-  
-
   const openModal = async (drink) => {
-    try{
-      const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
+    try {
+      const res = await axios.get(
+        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`
+      );
       const detailedDrink = res.data.drinks[0];
-      setIdActive(detailedDrink || null)
-    }
-    catch(error){
+      setIdActive(detailedDrink || null);
+    } catch (error) {
       console.error("Error fetching drink details:", error);
       setIdActive(null);
     }
@@ -104,10 +98,11 @@ function Drinks() {
     };
   }, []);
 
-  const indexOfLast = currentPage * itemsPerPage;
-  const indexOfFirst = indexOfLast - itemsPerPage;
-  const currentDrinks = categories.slice(indexOfFirst, indexOfLast);
-  const totalPages = Math.ceil(drinks.length / itemsPerPage);
+  const changePage = (category, newPage) => {
+    setPageByCat((prev) => ({ ...prev, [category]: newPage }));
+  };
+
+  console.log(drinks);
 
   return (
     <div className="drinks-container">
@@ -117,7 +112,7 @@ function Drinks() {
         <ul>
           {categories.map((category) => (
             <li key={category} className="checkbox-wrapper-13" htmlFor="c1-13">
-              <label  id="checkbox-label">
+              <label id="checkbox-label">
                 <input
                   id="c1-13"
                   type="checkbox"
@@ -143,33 +138,56 @@ function Drinks() {
             <div key={cat}>
               <h2>{cat}</h2>
               <div className="drinks-list">
-                {drinksList.map((drink) => (
-                  <div key={drink.idDrink} className="drink-card">
-                    <div className="card-titles">
-                      <h2>{drink.strDrink}</h2>
-                    </div>
+                {(() => {
+                  const currentPage = pageByCat[cat] || 1;
+                  const startIndex = (currentPage - 1) * itemsPerPage;
+                  const paginatedDrinks = drinksList.slice(
+                    startIndex,
+                    startIndex + itemsPerPage
+                  );
 
-                    <div className="drink-content">
-                      <img
-                        src={drink.strDrinkThumb}
-                        className="drink-image"
-                        alt="Drink"
-                      />
-                    </div>
+                  return paginatedDrinks.map((drink) => (
+                    <div key={drink.idDrink} className="drink-card">
+                      <div className="card-titles">
+                        <h2>{drink.strDrink}</h2>
+                      </div>
 
-                    <div className="more-btn" key={drink.idDrink}>
-                      <button
-                        className="btn-more"
-                        onClick={() => openModal(drink)}
-                      >
-                        More
-                      </button>
+                      <div className="drink-content">
+                        <img
+                          src={drink.strDrinkThumb}
+                          className="drink-image"
+                          alt="Drink"
+                        />
+                      </div>
+
+                      <div className="more-btn" key={drink.idDrink}>
+                        <button
+                          className="btn-more"
+                          onClick={() => openModal(drink)}
+                        >
+                          More
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                ));
+                })()}
               </div>
+              <div className="pagination">
+            {Array.from({
+              length: Math.ceil(drinksList.length / itemsPerPage),
+            }).map((_, index) => (
+              <button key={index}
+              onClick={() => changePage(cat, index + 1)}
+              className={pageByCat[cat] === index + 1 ? "active-page" : ""}>
+                {index + 1}
+              </button>
+            ))}
+          </div>
             </div>
+            
           ))}
+
+          
 
         {idActive && (
           <div className="show-drinks-card" ref={modalRef}>
@@ -206,17 +224,6 @@ function Drinks() {
             </div>
           </div>
         )}
-
-        <div className="pagination">
-          {Array.from({length: totalPages}, (_ , i) => (
-            <button 
-            key={i} 
-            onClick={() => setCurrentPage(i + 1)} 
-            disabled={currentPage === i+1}>
-              {i + 1}
-            </button>
-          ))}
-        </div>
       </main>
     </div>
   );
