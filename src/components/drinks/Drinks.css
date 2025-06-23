@@ -157,4 +157,31 @@
       font-size: 1rem;
     }
   }
+
+  & .pagination{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 4rem;
+    justify-content: center;
+
+    & button{
+      padding: 0.5rem 0.7rem;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      color: white;
+      background-color: hsla(0, 0%, 48%, 0.2);
+      border-radius: 5px;
+      transition: ease-in-out 0.3s;
+    }
+
+    & :hover{
+      background-color: hsl(327, 100%, 60%);
+    }
+
+    & .active-page{
+      background-color: hsl(327, 78%, 40%);
+    }
+  }
 }
