@@ -81,7 +81,7 @@
 
       & h2 {
         font-size: 1rem;
-        width: 100%;
+        width: fit-content;
       }
 
       & img {
