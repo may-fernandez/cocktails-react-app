@@ -64,9 +64,10 @@
     max-height: 25rem;
     position: absolute;
     top: 60px;
-    right: 10px;
+    right: 3px;
     background-color: hsla(0, 0%, 0%, 0.9);
     padding: 0;
+    margin: 0;
     overflow-y: auto;
     z-index: 1000;
 
@@ -79,18 +80,20 @@
       padding: 1rem;
       cursor: pointer;
 
-      & h2 {
+      & .search-drink {
+        display: flex;
         font-size: 1rem;
         width: fit-content;
       }
 
       & img {
-        width: 15%;
+        display: flex;
+        width: 20%;
         height: auto;
         margin: 0 1rem 0 1rem;
       }
 
-      & h2:hover {
+      & .search-drink:hover {
         color: hsl(335, 100%, 61%);
       }
     }
