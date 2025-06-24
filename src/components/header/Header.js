@@ -1,7 +1,8 @@
 import './Header.css';
 import { Link as ScrollLink , Element } from 'react-scroll';
 import { Link as RouterLink, useLocation} from 'react-router-dom';
-import {React, useEffect, useState } from 'react';
+import {React, useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 
 function Header(){
 
@@ -9,54 +10,52 @@ function Header(){
     const isHomePage = location.pathname === '/';
     const isDrinksPage = Location.pathname === '/drinks';
 
-    const [inputText, setInputText] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+    const [idActive, setIdActive] = useState(null);
+    const modalRef = useRef(null);
 
-    const [drinks, setDrinks] = useState([]);
-    const urlDrinks = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText}`;
+    const fetchSuggestions = async (term) => {
 
-   
-
-
-    useEffect(() => {
-        const fetchDrinks = async () => {
-            try{
-                const res = await fetch(urlDrinks)
-                if(!res.ok){
-                    throw new Error("Error in API response");
-                }
-
-                const data = await res.json();
-
-                setDrinks(data.drinks);
-                console.log(data.drinks);
-
-            }
-            catch(error){
-                console.error("Error fetching drinks: ", error);
-            }
+        if(!term.trim()){
+            setSuggestions([]);
+            return;
         }
 
-        fetchDrinks();
-    }, []);
-
-    const list = (props) => {
-
-        return(
-            <div>
-                <ul>
-                    {drinks.map((drink) => {
-                        <li key={drink.idDrink}>{drink.strDrink}</li>
-                    })}
-                </ul>
-            </div>
-        );
+        try{
+            const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${term}`);
+            setSuggestions(res.data.drinks || []);
+        }
+        catch(error){
+            console.error("Error fetching suggestions: ", error);
+            setSuggestions([]);
+        }
     }
 
-    let inputHandler = (e) => {
-        let lowerCase = e.target.value.toLowerCase();
+    const openModal = async (drink) => {
+        try{
+            const res = await axios.get
+            (`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
 
-        setInputText(lowerCase);
+            const detailedDrink = res.data.drinks[0];
+            setIdActive(detailedDrink || null);
+        }
+        catch(error){
+            console.error("Error fetching drink: ", error);
+            setIdActive(null);
+        }
+    } 
+
+
+    const closeModal = () => setIdActive(null); 
+    
+
+    const handleSelectDrink = async (drink) => {
+        setSuggestions([]);
+        setSearchTerm("");
+        await openModal(drink);
     }
+
 
     return(
         <div className='header'>
@@ -76,8 +75,26 @@ function Header(){
                 </div>
 
                 <div className='search'>
-                    <input type='text' placeholder='Search...' className='search-placeholder' onChange={inputHandler}/>
-                    <button className='search-btn'>Search</button>
+                    <input 
+                    type='text' 
+                    placeholder='Search...' 
+                    className='search-placeholder' 
+                    value={searchTerm}
+                    onChange={(e) => {
+                        const term = e.target.value;
+                        setSearchTerm(term);
+                        fetchSuggestions(term);
+                    }}/>
+                    {suggestions.length > 0 && (
+                        <ul className='suggestions-list'>
+                            {suggestions.map((drink) => (
+                                <li key={drink.idDrink} onClick={() => handleSelectDrink(drink)} className='suggestions-items'>
+                                    <img src={drink.strDrinkThumb} className='search-img'/>
+                                    <h2 className='search-drink'>{drink.strDrink}</h2>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </nav>
 
