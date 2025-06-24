@@ -14,6 +14,8 @@ function Header(){
     const [suggestions, setSuggestions] = useState([]);
     const [idActive, setIdActive] = useState(null);
     const modalRef = useRef(null);
+    const suggestionsRef = useRef(null);
+    
 
     const fetchSuggestions = async (term) => {
 
@@ -24,7 +26,11 @@ function Header(){
 
         try{
             const res = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${term}`);
-            setSuggestions(res.data.drinks || []);
+            
+            const filtered = (res.data.drinks || []).filter((drink) => 
+             drink.strDrink.toLowerCase().startsWith(term.toLowerCase()));
+
+            setSuggestions(filtered);
         }
         catch(error){
             console.error("Error fetching suggestions: ", error);
@@ -48,7 +54,23 @@ function Header(){
 
 
     const closeModal = () => setIdActive(null); 
+    const closeSuggestions = () => setSuggestions([]);
     
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if((modalRef.current && !modalRef.current.contains(event.target)) || 
+               (suggestionsRef.current && !suggestionsRef.current.contains(event.target))){
+                closeModal();
+                closeSuggestions();
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, []);
 
     const handleSelectDrink = async (drink) => {
         setSuggestions([]);
@@ -74,7 +96,7 @@ function Header(){
                     <RouterLink to='/drinks'>Drinks</RouterLink>
                 </div>
 
-                <div className='search'>
+                <div className='search' ref={suggestionsRef}>
                     <input 
                     type='text' 
                     placeholder='Search...' 
@@ -86,15 +108,52 @@ function Header(){
                         fetchSuggestions(term);
                     }}/>
                     {suggestions.length > 0 && (
+                        <div >
                         <ul className='suggestions-list'>
                             {suggestions.map((drink) => (
                                 <li key={drink.idDrink} onClick={() => handleSelectDrink(drink)} className='suggestions-items'>
-                                    <img src={drink.strDrinkThumb} className='search-img'/>
+                                    <img src={drink.strDrinkThumb} className='search-img' alt='drink'/>
                                     <h2 className='search-drink'>{drink.strDrink}</h2>
                                 </li>
                             ))}
                         </ul>
+                        </div>
                     )}
+                     {idActive && (
+          <div className="show-drinks-card" ref={modalRef}>
+            <div className="show-drinks-content">
+              <h2 className="modal-drink-name">{idActive.strDrink}</h2>
+              <div className="glass">
+                <h3>Glass:</h3>
+                <p>{idActive.strGlass}</p>
+              </div>
+              <div className="ingredients">
+                <h3>Ingredients:</h3>
+                <ul>
+                  <li>{idActive.strIngredient1}</li>
+                  <li>{idActive.strIngredient2}</li>
+                  <li>{idActive.strIngredient3}</li>
+                  <li>{idActive.strIngredient4}</li>
+                  <li>{idActive.strIngredient5}</li>
+                  <li>{idActive.strIngredient6}</li>
+                  <li>{idActive.strIngredient7}</li>
+                  <li>{idActive.strIngredient8}</li>
+                  <li>{idActive.strIngredient9}</li>
+                  <li>{idActive.strIngredient10}</li>
+                </ul>
+              </div>
+
+              <div className="instructions">
+                <h3>Instructions:</h3>
+                <p>{idActive.strInstructions}</p>
+              </div>
+
+              <div className="close-btn">
+                <button onClick={closeModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        )}
                 </div>
             </nav>
 
