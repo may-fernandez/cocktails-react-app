@@ -8,7 +8,7 @@ function Header(){
 
     const location = useLocation();
     const isHomePage = location.pathname === '/';
-    const isDrinksPage = Location.pathname === '/drinks';
+    const isDrinksPage = location.pathname === '/drinks';
 
     const [searchTerm, setSearchTerm] = useState("");
     const [suggestions, setSuggestions] = useState([]);
@@ -58,11 +58,11 @@ function Header(){
     
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if((modalRef.current && !modalRef.current.contains(event.target)) || 
-               (suggestionsRef.current && !suggestionsRef.current.contains(event.target))){
-                closeModal();
-                closeSuggestions();
-            }
+            const clickOutsideModal = modalRef.current && !modalRef.current.contains(event.target);
+            const clickOutsideSuggestions = suggestionsRef.current && !suggestionsRef.current.contains(event.target);
+
+            if(clickOutsideModal) closeModal() 
+            if(clickOutsideSuggestions) closeSuggestions()
         }
 
         document.addEventListener("mousedown", handleClickOutside);
