@@ -108,7 +108,6 @@ function Header(){
                         fetchSuggestions(term);
                     }}/>
                     {suggestions.length > 0 && (
-                        <div >
                         <ul className='suggestions-list'>
                             {suggestions.map((drink) => (
                                 <li key={drink.idDrink} onClick={() => handleSelectDrink(drink)} className='suggestions-items'>
@@ -117,7 +116,6 @@ function Header(){
                                 </li>
                             ))}
                         </ul>
-                        </div>
                     )}
                      {idActive && (
           <div className="show-drinks-card" ref={modalRef}>
