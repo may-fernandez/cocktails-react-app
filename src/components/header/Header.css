@@ -68,6 +68,8 @@
     background-color: hsla(0, 0%, 0%, 0.9);
     padding: 0;
     margin: 0;
+    scrollbar-width: thin;
+    scrollbar-color: white black;
     overflow-y: auto;
     z-index: 1000;
 

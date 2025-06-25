@@ -104,6 +104,8 @@
   max-height: 30rem;
   background-color: rgb(0, 0, 0);
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: white black;
   box-shadow: 3px 3px hsla(327, 100%, 60%, 0.578),
     -3px 0 0.4em hsla(181, 98%, 56%, 0.597);
   z-index: 1000;
