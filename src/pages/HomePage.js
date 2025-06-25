@@ -1,7 +1,6 @@
 import Hero from '../components/hero/Hero.js';
 import Drinks from '../components/home_drinks/HomeDrinks.js';
 import RandomDrink from '../components/random/RandomDrink.js';
-import Categories from '../components/categories/Categories.js';
 import NonAlcoholic from '../components/home_drinks/NonAlcoholic.js';
 import Optional from '../components/home_drinks/Optional.js';
 
@@ -16,7 +15,6 @@ function HomePage() {
       <NonAlcoholic/>
       <Optional/>
       <RandomDrink/>
-      <Categories/>
     </div>
   );
 }

@@ -89,7 +89,6 @@ function Header(){
                     <RouterLink to='/'>Home</RouterLink>
                     {isHomePage ? (
                         <>
-                        <ScrollLink to='categories' smooth={true} duration={500}>Categories</ScrollLink>
                         <ScrollLink to='random_drink' smooth={true} duration={500}>Random drink</ScrollLink>
                         </>
                     ) : null}

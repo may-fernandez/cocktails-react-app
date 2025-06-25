@@ -15,7 +15,7 @@
 
 .drink-card {
   width: 15rem;
-  height: 25rem;
+  height: 26rem;
   background-color: hsla(0, 0%, 48%, 0.1);
   border-radius: 5px;
   margin: 1rem 2rem 0 0;
@@ -37,7 +37,7 @@
   }
 
   & .card-titles {
-    height: 5rem;
+    height: 6rem;
     & h2 {
       width: fit-content;
       color: hsl(335, 100%, 61%);
