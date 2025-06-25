@@ -6,7 +6,7 @@
   & .aside-categories {
     width: 20%;
     margin-right: 2rem;
-    margin-top: 3rem;
+    margin-top: 4rem;
 
     & h3{
         font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
@@ -17,8 +17,9 @@
 
     & li{
         font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     @supports (-webkit-appearance: none) or (-moz-appearance: none) {
@@ -145,7 +146,7 @@
   }
 
   & #drinks-main{
-    margin-top: 3rem;
+    margin-top: 4rem;
      & h3{
         font-family: "Lucida Sans", Geneva, Verdana, sans-serif;
         font-weight: 600;
@@ -162,8 +163,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 4rem;
-    justify-content: center;
+    margin: 4rem 0 0 0.5rem;
+    justify-content: start;
 
     & button{
       padding: 0.5rem 0.7rem;
@@ -182,6 +183,18 @@
 
     & .active-page{
       background-color: hsl(327, 78%, 40%);
+    }
+  }
+
+  @media(max-width: 970px){
+    .aside-categories li{
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      
+      & label{
+        text-align: center;
+      }
     }
   }
 }
